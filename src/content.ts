@@ -27,9 +27,13 @@ export const facts = {
   gpa: '7.52',
 };
 
-// Addresses of the three versions, each its own repo and site. Fill these in once
-// the sites are deployed; while a value is empty, no link to that version is shown.
-export const sites = { work: '', story: '', hire: '' };
+// Live addresses of the three versions, each its own repo and site.
+// A link to another version is shown only while its address is filled in.
+export const sites = {
+  work: 'https://shubhraj5575.github.io/portfolio-work/',
+  story: 'https://shubhraj5575.github.io/portfolio-story/',
+  hire: 'https://shubhraj5575.github.io/portfolio-hire/',
+};
 
 /* ───────── recruiters ─────────
    Order: current role and best shipped work, then the rest of the job,

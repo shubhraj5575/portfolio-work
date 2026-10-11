@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import { person, work, sites } from '../content';
 import '../styles/work.css';
 
+const home = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const others = [{ name: 'Story', href: sites.story }, { name: 'Hire', href: sites.hire }].filter(v => v.href);
 ---
 <Base
@@ -14,7 +15,7 @@ const others = [{ name: 'Story', href: sites.story }, { name: 'Hire', href: site
   <canvas id="gl" aria-hidden="true"></canvas>
 
   <header class="top">
-    <a class="name" href="/">{person.name}</a>
+    <a class="name" href={home}>{person.name}</a>
     <nav aria-label="Contact">
       <a href={`mailto:${person.email}`}>Email</a>
       <a href={person.linkedin}>LinkedIn</a>

@@ -27,4 +27,10 @@ npm run dev      # http://localhost:4321
 npm run build    # static site in dist/
 ```
 
-The build is fully static (Astro), needs no environment variables, and can be hosted anywhere that serves files.
+## Deploy
+
+Live at **https://shubhraj5575.github.io/portfolio-work/**
+
+Every push to `main` rebuilds and publishes the site through GitHub Actions (`.github/workflows/deploy.yml`) to GitHub Pages. Nothing else to do: commit, push, and the live site updates in about a minute.
+
+The build is fully static and needs no secrets. The workflow passes the address and sub-path to the build, so a custom domain added later in the repo's Pages settings works without code changes.
