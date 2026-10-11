@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import { person, work, sites } from '../content';
+import '../styles/work.css';
+
+const others = [{ name: 'Story', href: sites.story }, { name: 'Hire', href: sites.hire }].filter(v => v.href);
+---
+<Base
+  title={`${person.name} — Work`}
+  description="AI product builder at ONE Group. Shipped an AI office that runs inside WhatsApp groups. Founder of GreenPlate. B.Tech, DTU 2026."
+  fonts="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+  theme="#f1ebdf"
+>
+  <canvas id="gl" aria-hidden="true"></canvas>
+
+  <header class="top">
+    <a class="name" href="/">{person.name}</a>
+    <nav aria-label="Contact">
+      <a href={`mailto:${person.email}`}>Email</a>
+      <a href={person.linkedin}>LinkedIn</a>
+      <a href={person.github}>GitHub</a>
+    </nav>
+  </header>
+
+  <nav class="index" aria-label="Sections">
+    {work.map(s => <a href={`#${s.id}`}>{s.nav}</a>)}
+  </nav>
+  <div class="hint" aria-hidden="true">move your cursor through the dots</div>
+
+  <main>
+    {work.map((s, i) => (
+      <section id={s.id} data-glyph={s.glyph}>
+        <div class="col">
+          <div>
+            <p class="no">{s.no}</p>
+            {i === 0 ? <h1 set:html={s.title} /> : <h2 set:html={s.title} />}
+          </div>
+          {s.lead && (
+            <div class="lead">
+              <p>{s.lead}</p>
+              <p class="links">
+                <a href={`mailto:${person.email}`}>Email me</a>
+                <a href={person.linkedin}>LinkedIn</a>
+                <a href={person.github}>GitHub</a>
+              </p>
+            </div>
+          )}
+          {s.rows && (
+            <dl class="facts">
+              {s.rows.map(r => (
+                <div>
+                  <dt>{r.k}</dt>
+                  <dd>{r.href && !r.link ? <a href={r.href}>{r.v}</a> : r.v}{r.link && <a class="more" href={r.href}>{r.link} ↗</a>}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+          {i === work.length - 1 && others.length > 0 && (
+            <p class="others">
+              Other versions of this site:
+              {others.map(v => <a href={v.href}>{v.name}</a>)}
+            </p>
+          )}
+        </div>
+      </section>
+    ))}
+  </main>
+
+  <script>
+    import '../scripts/particles.ts';
+  </script>
+</Base>
